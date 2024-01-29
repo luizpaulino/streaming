@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Page</title>
+</head>
+
+<body>
+<h1>Video Streaming</h1>
+
+<!-- Campo de entrada para o ID do vídeo -->
+<label for="videoId">Video ID:</label>
+<input type="text" id="videoId" placeholder="Insira o ID do vídeo">
+<button onclick="loadVideo()">Carregar Vídeo</button>
+
+<!-- Div para exibir o vídeo -->
+<div id="videoContainer"></div>
+
+<script>
+    function loadVideo() {
+        var videoId = document.getElementById("videoId").value;
+
+        if (videoId.trim() !== "") {
+            var videoUrl = "/streaming/" + videoId;
+
+            var videoElement = document.createElement("video");
+            videoElement.src = videoUrl;
+            videoElement.width = 720;
+            videoElement.height = 480;
+            videoElement.controls = true;
+            videoElement.preload = "none";
+
+            // Limpe o conteúdo anterior e adicione o novo elemento de vídeo
+            document.getElementById("videoContainer").innerHTML = "";
+            document.getElementById("videoContainer").appendChild(videoElement);
+        } else {
+            alert("Por favor, insira um ID de vídeo válido.");
+        }
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+aws:
+  s3:
+    region: sa-east-1
+    bucket-name: postech-streaming-upload
+    file-format: mp4
+
+aggregator:
+  service:
+    base-url: URI_FLIX
+    path: /api/aggregators/watched
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          elasticsearch:
+            core: DEBUG
+
+server:
+  port: 8080
