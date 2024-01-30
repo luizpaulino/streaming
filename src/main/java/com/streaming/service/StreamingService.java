@@ -58,7 +58,7 @@ public class StreamingService {
                                 .uri(externalServicePath)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .retrieve()
-                                .bodyToMono(Void.class)
+                                .bodyToMono(String.class)
                                 .subscribe();
                     }
                 }).subscribe();

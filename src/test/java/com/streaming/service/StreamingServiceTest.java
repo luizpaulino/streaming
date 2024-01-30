@@ -70,7 +70,7 @@ class StreamingServiceTest {
         when(webClient.post().uri("/api/aggregators/watched")).thenReturn(requestBodyUriSpecMock);
         when(webClient.post().uri("/api/aggregators/watched").contentType(MediaType.APPLICATION_JSON)).thenReturn(requestBodyUriSpecMock);
         when(webClient.post().uri("/api/aggregators/watched").contentType(MediaType.APPLICATION_JSON).retrieve()).thenReturn(Mockito.mock(WebClient.ResponseSpec.class));
-        when(webClient.post().uri("/api/aggregators/watched").contentType(MediaType.APPLICATION_JSON).retrieve().bodyToMono(String.class)).thenReturn(Mono.empty());
+        when(webClient.post().uri("/api/aggregators/watched").contentType(MediaType.APPLICATION_JSON).retrieve().bodyToMono(String.class)).thenReturn(Mono.just(""));
 
 
         ReflectionTestUtils.setField(streamingService, "bucketName", "example-bucket");
@@ -83,7 +83,7 @@ class StreamingServiceTest {
         // Executar o método e verificar interações
         streamingService.getVideo(idVideo, range, cookie).block();
         verify(valueOps, times(1)).get(cookie + idVideo);
-        verify(valueOps, times(1)).set(cookie + idVideo, idVideo, Duration.ofDays(10));
+        verify(valueOps, times(1)).set(cookie + idVideo, idVideo, Duration.ofMinutes(300));
         verify(webClientBuilder, times(1)).baseUrl("http://localhost:9090");
         verify(webClient.post(), times(1));
     }
