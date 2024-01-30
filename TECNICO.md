@@ -56,3 +56,5 @@ Para contabilizar as visualizações dos vídeos, utilizei o Redis, por ser um b
 
 O grande desafio foi o streaming do vídeo que foi algo que fiz pela primeira vez, e tive bastante dificuldades e fazer os testes unitários com integração mockando o s3.
 A arquitetura do projeto também foi um desafio, pois tive que pensar em uma arquitetura que fosse escalável e que pudesse ser facilmente mantida e atualizada.
+
+Criei uma action no github que gera a badge da cobertura de código pra ficar fácil a visualização.
